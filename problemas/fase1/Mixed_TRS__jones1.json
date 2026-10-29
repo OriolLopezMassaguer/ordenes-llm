@@ -1,0 +1,31 @@
+{
+  "nombre": "Mixed_TRS__jones1",
+  "origen": "TRS_Standard/Mixed_TRS/jones1.xml",
+  "variables": [
+    "x1",
+    "x2",
+    "x3"
+  ],
+  "reglas": [
+    "f1(x1) -> f2(x1, f3)",
+    "f2(f3, x1) -> x1",
+    "f2(f4(x1, x2), x3) -> f2(x2, f4(x1, x3))"
+  ],
+  "renombrado": {
+    "f1": "rev",
+    "f2": "r1",
+    "f3": "empty",
+    "f4": "cons"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 3,
+    "precedencias": 24,
+    "ejemplo": [
+      "f1",
+      "f2",
+      "f3",
+      "f4"
+    ]
+  }
+}

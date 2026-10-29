@@ -1,0 +1,30 @@
+{
+  "nombre": "AG01__#3.7",
+  "origen": "TRS_Standard/AG01/#3.7.xml",
+  "variables": [
+    "x1"
+  ],
+  "reglas": [
+    "f1(f2) -> f2",
+    "f1(f3(f3(x1))) -> f3(f1(x1))",
+    "f4(f3(f2)) -> f2",
+    "f4(f3(f3(x1))) -> f3(f4(f3(f1(x1))))"
+  ],
+  "renombrado": {
+    "f1": "half",
+    "f2": "0",
+    "f3": "s",
+    "f4": "log"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 4,
+    "precedencias": 24,
+    "ejemplo": [
+      "f2",
+      "f4",
+      "f3",
+      "f1"
+    ]
+  }
+}

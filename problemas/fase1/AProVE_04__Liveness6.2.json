@@ -1,0 +1,32 @@
+{
+  "nombre": "AProVE_04__Liveness6.2",
+  "origen": "TRS_Standard/AProVE_04/Liveness6.2.xml",
+  "variables": [
+    "x1",
+    "x2"
+  ],
+  "reglas": [
+    "f1(f2(x1)) -> f1(f3(f4(x1)))",
+    "f4(f5) -> f2(f5)",
+    "f4(f6(x1, x2)) -> f2(x2)",
+    "f3(f2(x1)) -> f2(f3(x1))",
+    "f3(f4(x1)) -> f4(f3(x1))",
+    "f3(f6(x1, x2)) -> f6(f3(x1), x2)",
+    "f3(f6(x1, x2)) -> f6(x1, f3(x2))",
+    "f3(f6(x1, x2)) -> f6(x1, x2)"
+  ],
+  "renombrado": {
+    "f1": "top",
+    "f2": "sent",
+    "f3": "check",
+    "f4": "rest",
+    "f5": "nil",
+    "f6": "cons"
+  },
+  "lpo": {
+    "resoluble": false,
+    "soluciones": 0,
+    "precedencias": 720,
+    "ejemplo": null
+  }
+}

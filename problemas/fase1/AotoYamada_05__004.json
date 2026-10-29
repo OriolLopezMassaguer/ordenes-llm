@@ -1,0 +1,30 @@
+{
+  "nombre": "AotoYamada_05__004",
+  "origen": "TRS_Standard/AotoYamada_05/004.xml",
+  "variables": [
+    "x1",
+    "x2",
+    "x3"
+  ],
+  "reglas": [
+    "f1(f1(f2, f3), x1) -> x1",
+    "f1(f1(f2, f1(f4, x1)), x2) -> f1(f4, f1(f1(f2, x1), x2))",
+    "f1(f1(f5, x1), f6) -> f6",
+    "f1(f1(f5, x1), f1(f1(f7, x2), x3)) -> f1(f1(f2, f1(x1, x2)), f1(f1(f5, x1), x3))"
+  ],
+  "renombrado": {
+    "f1": "app",
+    "f2": "plus",
+    "f3": "0",
+    "f4": "s",
+    "f5": "sumwith",
+    "f6": "nil",
+    "f7": "cons"
+  },
+  "lpo": {
+    "resoluble": false,
+    "soluciones": 0,
+    "precedencias": 5040,
+    "ejemplo": null
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "nombre": "Transformed_CSR_04__Ex18_Luc06_Z",
+  "origen": "TRS_Standard/Transformed_CSR_04/Ex18_Luc06_Z.xml",
+  "variables": [
+    "x1"
+  ],
+  "reglas": [
+    "f1(f1(f2)) -> f1(f3(f4(f2)))",
+    "f1(x1) -> f4(x1)",
+    "f5(f4(x1)) -> f1(x1)",
+    "f5(x1) -> x1"
+  ],
+  "renombrado": {
+    "f1": "f",
+    "f2": "a",
+    "f3": "g",
+    "f4": "n__f",
+    "f5": "activate"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 10,
+    "precedencias": 120,
+    "ejemplo": [
+      "f2",
+      "f5",
+      "f1",
+      "f3",
+      "f4"
+    ]
+  }
+}

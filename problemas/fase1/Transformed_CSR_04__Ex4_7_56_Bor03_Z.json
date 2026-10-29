@@ -1,0 +1,40 @@
+{
+  "nombre": "Transformed_CSR_04__Ex4_7_56_Bor03_Z",
+  "origen": "TRS_Standard/Transformed_CSR_04/Ex4_7_56_Bor03_Z.xml",
+  "variables": [
+    "x1",
+    "x2",
+    "x3"
+  ],
+  "reglas": [
+    "f1(x1) -> f2(x1, f3(f4(x1)))",
+    "f5(f6, x1) -> x1",
+    "f5(f4(x1), f2(x2, x3)) -> f5(x1, f7(x3))",
+    "f1(x1) -> f3(x1)",
+    "f7(f3(x1)) -> f1(x1)",
+    "f7(x1) -> x1"
+  ],
+  "renombrado": {
+    "f1": "from",
+    "f2": "cons",
+    "f3": "n__from",
+    "f4": "s",
+    "f5": "after",
+    "f6": "0",
+    "f7": "activate"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 42,
+    "precedencias": 5040,
+    "ejemplo": [
+      "f5",
+      "f6",
+      "f7",
+      "f1",
+      "f2",
+      "f3",
+      "f4"
+    ]
+  }
+}

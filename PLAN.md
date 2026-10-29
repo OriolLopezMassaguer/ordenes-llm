@@ -13,22 +13,22 @@ Una alucinación cuesta tiempo, nunca corrección.
 
 ## Fase 0 — Preparación (una tarde)
 
-- [ ] Entorno Python con `z3-solver` y acceso a un LLM (API, o a mano al principio).
-- [ ] Descargar la TPDB (Termination Problems Database, en GitHub). Comprobar qué
-      formato usa ahora (históricamente `.trs` / XTC).
-- [ ] Elegir ~50 TRS pequeños, sin AC ni reglas condicionales, que se sabe que terminan.
-- [ ] **Renombrar símbolos** (`plus` → `f3`, `s` → `g1`, …) para que el LLM no use
+- [x] Entorno Python con `z3-solver` y acceso a un LLM (API, o a mano al principio).
+- [x] Descargar la TPDB (Termination Problems Database, en GitHub). Comprobar qué
+      formato usa ahora (históricamente `.trs` / XTC). → `TRS_Standard` sigue en XTC.
+- [x] Elegir ~50 TRS pequeños, sin AC ni reglas condicionales, que se sabe que terminan.
+- [x] **Renombrar símbolos** (`plus` → `f3`, `s` → `g1`, …) para que el LLM no use
       soluciones memorizadas de la TPDB: medimos razonamiento, no memoria.
 
 ## Fase 1 — LPO (1–2 fines de semana)
 
-1. [ ] Parser del formato elegido a una representación de términos.
-2. [ ] Comprobador de LPO.
-3. [ ] **Línea base:** fuerza bruta sobre todas las precedencias (factible con
+1. [x] Parser del formato elegido a una representación de términos.
+2. [x] Comprobador de LPO.
+3. [x] **Línea base:** fuerza bruta sobre todas las precedencias (factible con
        signaturas pequeñas).
-4. [ ] **Bucle con el LLM:** se le dan las reglas, devuelve una precedencia en JSON;
+4. [x] **Bucle con el LLM:** se le dan las reglas, devuelve una precedencia en JSON;
        si falla, se le dice qué regla no se orienta y repite (máx. 3–5 intentos).
-5. [ ] **Métricas:** problemas resueltos, intentos necesarios, casos en que la fuerza
+5. [ ] **Métricas:** (el script ya las calcula; falta ejecutarlo con un LLM) problemas resueltos, intentos necesarios, casos en que la fuerza
        bruta encuentra y el LLM no.
 
 **Hito:** tabla de resultados. ¿«Entiende» el LLM LPO?
@@ -58,6 +58,16 @@ seguir.
 
 - [ ] Implementar AC-RPO (aplanamiento y comparación de multiconjuntos).
 - [ ] Repetir la fase 1 con los problemas AC de la TPDB.
+
+## Decisiones
+
+- **2026-10-29 — Repo autocontenido, sin contenedor por ahora.**
+  Dependencias mínimas (Python ≥ 3.10, `z3-solver`, SDK del LLM opcional) en
+  `pyproject.toml`; instalación con `uv sync` o `pip install -e .`, y scripts
+  `instalar.ps1` (Windows) e `instalar.sh` (Linux). El subconjunto de la TPDB va
+  incluido y renombrado en `problemas/`, con un script para regenerarlo. Modo
+  manual sin API (copiar/pegar el prompt en un chat). Un `Dockerfile` solo se
+  añadirá en la fase 3, para NaTT/TTT2, que son incómodos de instalar en Windows.
 
 ## Detalles prácticos
 

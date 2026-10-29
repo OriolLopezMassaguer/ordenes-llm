@@ -1,0 +1,24 @@
+{
+  "nombre": "Zantema_05__z05",
+  "origen": "TRS_Standard/Zantema_05/z05.xml",
+  "variables": [
+    "x1"
+  ],
+  "reglas": [
+    "f1(f2, f1(f2, x1)) -> f1(f3, f1(f4, x1))",
+    "f1(f4, f1(f4, x1)) -> f1(f2, f1(f3, x1))",
+    "f1(f3, f1(f3, x1)) -> f1(f4, f1(f2, x1))"
+  ],
+  "renombrado": {
+    "f1": "f",
+    "f2": "a",
+    "f3": "c",
+    "f4": "b"
+  },
+  "lpo": {
+    "resoluble": false,
+    "soluciones": 0,
+    "precedencias": 24,
+    "ejemplo": null
+  }
+}

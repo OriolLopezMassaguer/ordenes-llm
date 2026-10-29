@@ -1,0 +1,30 @@
+{
+  "nombre": "Transformed_CSR_04__Ex18_Luc06_iGM",
+  "origen": "TRS_Standard/Transformed_CSR_04/Ex18_Luc06_iGM.xml",
+  "variables": [
+    "x1"
+  ],
+  "reglas": [
+    "f1(f2(f2(f3))) -> f4(f2(f5(f2(f3))))",
+    "f4(f2(x1)) -> f1(f2(f4(x1)))",
+    "f4(f3) -> f1(f3)",
+    "f4(f5(x1)) -> f1(f5(x1))",
+    "f2(f4(x1)) -> f2(x1)",
+    "f2(f1(x1)) -> f2(x1)",
+    "f5(f4(x1)) -> f5(x1)",
+    "f5(f1(x1)) -> f5(x1)"
+  ],
+  "renombrado": {
+    "f1": "active",
+    "f2": "f",
+    "f3": "a",
+    "f4": "mark",
+    "f5": "g"
+  },
+  "lpo": {
+    "resoluble": false,
+    "soluciones": 0,
+    "precedencias": 120,
+    "ejemplo": null
+  }
+}

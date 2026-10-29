@@ -1,0 +1,29 @@
+{
+  "nombre": "AProVE_10__ex5",
+  "origen": "TRS_Standard/AProVE_10/ex5.xml",
+  "variables": [
+    "x1"
+  ],
+  "reglas": [
+    "f1(f2) -> f2",
+    "f1(f3(x1)) -> f4(f1(x1))",
+    "f4(f2) -> f2"
+  ],
+  "renombrado": {
+    "f1": "g",
+    "f2": "0",
+    "f3": "s",
+    "f4": "f"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 16,
+    "precedencias": 24,
+    "ejemplo": [
+      "f1",
+      "f2",
+      "f3",
+      "f4"
+    ]
+  }
+}

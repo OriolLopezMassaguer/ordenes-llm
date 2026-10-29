@@ -1,0 +1,29 @@
+{
+  "nombre": "SK90__4.11",
+  "origen": "TRS_Standard/SK90/4.11.xml",
+  "variables": [
+    "x1",
+    "x2"
+  ],
+  "reglas": [
+    "f1(x1, f2) -> x1",
+    "f1(x1, f3(x2)) -> f3(f1(x1, x2))",
+    "f1(f2, f3(x1)) -> f3(x1)",
+    "f3(f1(f2, x1)) -> f3(x1)"
+  ],
+  "renombrado": {
+    "f1": "+",
+    "f2": "0",
+    "f3": "s"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 3,
+    "precedencias": 6,
+    "ejemplo": [
+      "f1",
+      "f2",
+      "f3"
+    ]
+  }
+}

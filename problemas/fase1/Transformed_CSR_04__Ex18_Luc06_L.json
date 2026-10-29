@@ -1,0 +1,23 @@
+{
+  "nombre": "Transformed_CSR_04__Ex18_Luc06_L",
+  "origen": "TRS_Standard/Transformed_CSR_04/Ex18_Luc06_L.xml",
+  "variables": [],
+  "reglas": [
+    "f1(f1(f2)) -> f1(f3)"
+  ],
+  "renombrado": {
+    "f1": "f",
+    "f2": "a",
+    "f3": "g"
+  },
+  "lpo": {
+    "resoluble": true,
+    "soluciones": 4,
+    "precedencias": 6,
+    "ejemplo": [
+      "f1",
+      "f2",
+      "f3"
+    ]
+  }
+}
