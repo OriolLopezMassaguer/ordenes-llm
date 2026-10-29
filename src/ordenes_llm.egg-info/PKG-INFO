@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: ordenes-llm
+Version: 0.1.0
+Summary: LLMs que proponen órdenes de términos (LPO, …) verificados por un comprobador
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: z3-solver>=4.12
+Provides-Extra: anthropic
+Requires-Dist: anthropic>=0.40; extra == "anthropic"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+
+# ordenes-llm
+
+Experimentos con LLMs para encontrar órdenes de reducción (LPO, interpretaciones
+polinómicas y, más adelante, AC-RPO) que prueben la terminación de sistemas de
+reescritura. **El LLM propone; un comprobador formal decide.**
+
+El plan de trabajo está en [PLAN.md](PLAN.md).
+
+## Instalación
+
+Solo hace falta Python ≥ 3.10. Con [uv](https://docs.astral.sh/uv/) es un comando;
+sin uv, los scripts crean un entorno virtual con pip.
+
+| Sistema | Comando |
+|---|---|
+| Windows (PowerShell) | `.\instalar.ps1` |
+| Linux / macOS | `./instalar.sh` |
+| A mano | `uv sync --extra anthropic` o `pip install -e ".[anthropic,dev]"` |
+
+Comprueba que todo va con `pytest` (o `uv run pytest`).
+
+## Uso — fase 1 (LPO)
+
+Los 50 problemas ya están en `problemas/fase1/` (40 resolubles por LPO con distinta
+dificultad y 10 de control que LPO no resuelve), con los símbolos renombrados
+(`f1`, `f2`, …) para que el LLM no pueda reconocerlos.
+
+```bash
+# Sin API ni coste: el script muestra el prompt, lo pegas en un chat
+# y pegas la respuesta terminando con una línea FIN
+python scripts/experimento_fase1.py --proveedor manual --limite 3
+
+# Modelo local con Ollama (ollama pull qwen3:8b)
+python scripts/experimento_fase1.py --proveedor openai --modelo qwen3:8b
+
+# API de Anthropic (variable de entorno ANTHROPIC_API_KEY)
+python scripts/experimento_fase1.py --proveedor anthropic --modelo claude-sonnet-5-5
+```
+
+Opciones útiles: `--intentos N` (propuestas por problema, 4 por defecto),
+`--problema SK90` (filtra por nombre), `--solo-resolubles`.
+
+Cada ejecución deja en `experimentos/` un `.md` con la tabla de resultados y un
+`.jsonl` con el historial completo (prompts, respuestas y reglas que fallaron).
+
+El proveedor `openai` sirve para cualquier API compatible: cambia la URL con
+`ORDENES_LLM_URL` (por defecto `http://localhost:11434/v1`, Ollama) y la clave con
+`ORDENES_LLM_CLAVE`.
+
+## Regenerar los problemas
+
+No es necesario, pero si quieres otro subconjunto:
+
+```bash
+git clone --depth 1 https://github.com/TermCOMP/TPDB.git ../TPDB
+python scripts/seleccionar_problemas.py ../TPDB --resolubles 40 --no-resolubles 10
+```
+
+Tarda menos de un minuto: para cada candidato prueba todas las precedencias
+totales y anota cuántas funcionan («facilidad»).
+
+## Estructura
+
+- `src/terminos.py` — términos, TRS, lectura del formato XTC de la TPDB, renombrado
+- `src/lpo.py` — LPO, comprobación de reglas, fuerza bruta sobre precedencias
+- `src/llm.py` — prompt, proveedores (manual, Anthropic, compatible con OpenAI) y
+  bucle generar-y-comprobar con feedback de las reglas que fallan
+- `scripts/` — selección de problemas y experimento de la fase 1
+- `problemas/fase1/` — subconjunto de la TPDB, renombrado, con datos de fuerza bruta
+- `experimentos/` — resultados de cada ejecución
+- `tests/` — tests del comprobador y del bucle (con un LLM falso)

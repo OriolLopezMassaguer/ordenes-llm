@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/llm.py
+src/lpo.py
+src/terminos.py
+src/ordenes_llm.egg-info/PKG-INFO
+src/ordenes_llm.egg-info/SOURCES.txt
+src/ordenes_llm.egg-info/dependency_links.txt
+src/ordenes_llm.egg-info/requires.txt
+src/ordenes_llm.egg-info/top_level.txt
+tests/test_llm.py
+tests/test_lpo.py
